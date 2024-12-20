@@ -9,5 +9,6 @@ from .config import go_configure, load_jwt, save_jwt
 
 __all__ = [
     'go_configure',
-    'save_jwt'
+    'save_jwt',
+    'load_jwt'
 ]

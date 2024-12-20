@@ -60,10 +60,8 @@ if __name__ == '__main__':
         in that directory as a yaml file.
         I will be using them in what follows.
     """
-
     from configuration import save_jwt, load_jwt
 
     another_restored_actor = Actor(jwt=load_jwt())
     save_jwt(another_restored_actor.jwt)
-
-    ...  # this is for setting a breakpoint.
+    ...  # this is for setting a breakpoint in debug mode.
