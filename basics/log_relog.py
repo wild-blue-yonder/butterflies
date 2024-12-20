@@ -8,8 +8,11 @@ LICENSE file in the root directory of this source tree.
 import yaml
 from blue_yonder import Actor
 
-# Make sure to have the environment variables set
-# or uncomment the following lines to load them from a .env file
+"""
+    Make sure that your environment variables are set
+    or uncomment the following two lines to load them 
+    from a .env file (see the .env_example file).
+"""
 # import dotenv
 # dotenv.load_dotenv()
 
@@ -23,7 +26,7 @@ def log_in():
 
     # The session parameters are in a JASON Web Token,
     # or JWT for short.
-    jwt = my_actor.jwt()
+    jwt = my_actor.jwt
 
     # We will save it in a yaml file.
     with open(JWT_PATH, 'w') as jwt_file:
@@ -42,8 +45,25 @@ def relogin():
 
 
 if __name__ == '__main__':
+    """ 
+        This is a simple example of how to log in and relog in.
+    """
     my_actor = log_in()
     my_restored_actor = relogin()
     # You can compare the JWT properties of the two actors
     # my_actor.jwt() and my_restored_actor.jwt()
+
+    """ 
+        I created a couple of convenience functions in the
+        configuration 'sub-package'. Namely:
+        save_jwt(jwt) and load_jwt(). They will save and load
+        in that directory as a yaml file.
+        I will be using them in what follows.
+    """
+
+    from configuration import save_jwt, load_jwt
+
+    another_restored_actor = Actor(jwt=load_jwt())
+    save_jwt(another_restored_actor.jwt)
+
     ...  # this is for setting a breakpoint.
