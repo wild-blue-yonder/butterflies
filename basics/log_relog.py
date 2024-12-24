@@ -51,7 +51,7 @@ if __name__ == '__main__':
     my_actor = log_in()
     my_restored_actor = relogin()
     # You can compare the JWT properties of the two actors
-    # my_actor.jwt() and my_restored_actor.jwt()
+    # my_actor.jwt and my_restored_actor.jwt
 
     """ 
         I created a couple of convenience functions in the
@@ -62,6 +62,18 @@ if __name__ == '__main__':
     """
     from configuration import save_jwt, load_jwt
 
+    """
+        Don't worry about the expiration time of the old JWT, 
+        blue-yonder checks its validity automatically when
+        it creates a new Actor.
+    """
+
     another_restored_actor = Actor(jwt=load_jwt())
     save_jwt(another_restored_actor.jwt)
+
+    """ 
+        You can also see how many log-in attempts you can make
+        within the limits window.
+    """
+    limit_left = another_restored_actor.RateLimitRemaining
     ...  # this is for setting a breakpoint in debug mode.
