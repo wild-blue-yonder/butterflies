@@ -11,7 +11,7 @@ import yaml
 
 
 image_post_text = 'This is a post with an embedded image.'
-IMAGE_FILE = './images/butterfly.jpg'
+IMAGE_FILE = './images/butterfly_big.jpg'
 MIME_TYPE = 'image/jpeg'
 #                  - or -
 # IMAGE_FILE = './images/butterfly.png'
@@ -39,7 +39,7 @@ def main():
         text=image_post_text,
         blob=uploaded_blob,
         alt_text=image_alt_text,
-        aspect_ratio={'height':620,'width':619}
+        aspect_ratio={'height':1707,'width':2560} #2560 × 1707
     )
 
     # We will save its ids it in a yaml file.
