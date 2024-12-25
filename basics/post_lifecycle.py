@@ -48,7 +48,7 @@ def main():
     # set permissions for the post created before.
     my_actor.restrict(uri=post['uri'], rules=rules1)
 
-    # reply to the post
+    # reply to the post created before
     reply = my_actor.reply(root_post=post, post=post, text=TEXT2)
 
     # restrict interactions with the reply

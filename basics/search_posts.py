@@ -7,7 +7,6 @@ LICENSE file in the root directory of this source tree.
 """
 from configuration import load_jwt, save_jwt
 from blue_yonder import Actor
-from blue_yonder.yonder import search_100_posts
 
 
 query = {
