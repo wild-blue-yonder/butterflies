@@ -11,7 +11,7 @@ from blue_yonder import Actor, test_actor
 
 TEXT1 = 'This is a post that will later have limited access'
 TEXT2 = 'This is a reply with limited access to the post with limited access'
-LIST_URI = '' # your list uri here; e.g. 'at://did:plc:yjvzk3c3uanrlrsdm4uezjqi/app.bsky.graph.list/3lcxml5gmf32s'
+# LIST_URI = 'at://did:plc:yjvzk3c3uanrlrsdm4uezjqi/app.bsky.graph.list/3lcxml5gmf32s' # your list uri here
 
 
 def main():
@@ -37,10 +37,10 @@ def main():
     """
 
     rules1 = [
-        {
-            '$type': 'app.bsky.feed.threadgate#listRule',
-            'list': LIST_URI
-        },
+        # {
+        #     '$type': 'app.bsky.feed.threadgate#listRule',
+        #     'list': LIST_URI
+        # },
         {
             '$type': 'app.bsky.feed.threadgate#mentionRule'
         }

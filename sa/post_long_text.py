@@ -5,7 +5,6 @@
 This source code is licensed under the license found in the
 LICENSE file in the root directory of this source tree.
 """
-from os import getenv
 from configuration import load_jwt, save_jwt
 from blue_yonder import Actor
 
@@ -37,13 +36,55 @@ def chunk_text(text, max_length=290):
     return chunks
 
 
+def split_text_preserve_special(text, max_length=290):
+    """Split text into chunks no longer than max_length, preserving words and special characters."""
+    chunks = []
+    lines = text.splitlines(keepends=True)
+    current = ''
+
+    for line in lines:
+        words = line.split()
+        if not words:  # Empty or whitespace-only line
+            if len(current) + len(line) > max_length:
+                chunks.append(current)
+                current = ''
+            current += line
+            continue
+
+        for word in words:
+            if not current:
+                if len(word) > max_length:
+                    chunks.append(word)
+                    continue
+                current = word
+            elif len(current) + len(word) + 1 <= max_length:
+                if not current.endswith('\n'):
+                    current += ' '
+                current += word
+            else:
+                chunks.append(current)
+                current = word
+
+        if line.endswith('\n'):
+            current += '\n'
+            if len(current) > max_length:
+                chunks.append(current[:-1])
+                current = '\n'
+
+    if current:
+        chunks.append(current)
+
+    return chunks
+
+
 def main():
     """ Post a long text as a thread of text posts.
     """
     my_actor = Actor(jwt=load_jwt())
     save_jwt(my_actor.jwt)
 
-    posts = chunk_text(long_text)
+    # posts = chunk_text(long_text)
+    posts = split_text_preserve_special(long_text)
     result = my_actor.thread(posts_texts=posts)
 
 

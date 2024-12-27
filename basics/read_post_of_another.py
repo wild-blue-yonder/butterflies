@@ -32,7 +32,3 @@ post = posts_of_another[0]
 my_actor.read_post(uri=post['uri'], actor=another.did)
 
 ...
-
-
-
-...
