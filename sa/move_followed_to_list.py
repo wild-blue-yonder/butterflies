@@ -41,7 +41,7 @@ save_jwt(my_actor.jwt)
 #     all_lists[list_name] = list_members
 
 # my_listfiles = ['FAIR', 'GDM', 'GT', 'HAIC', 'HF', 'MA', 'MILA',
-#                 'MSR', 'OAI', 'RL']
+#                 'MSR', 'OAI', 'RL', 'OP', 'P']
 
 # all_members = []
 
@@ -78,10 +78,11 @@ for followed in who_i_follow:
         if is_in(followed, other_people, key='handle'):
             ...
         else:
+            followed_did = followed['did']
             if is_in(followed, all_members, key='handle'):
-                ...
+                _, records = my_actor.unfollow(actor=followed_did, records=records)
+                sleep(2)
             else:
-                followed_did = followed['did']
                 op_uri = 'at://did:plc:x7lte36djjyhereki5avyst7/app.bsky.graph.list/3lemgy7tjjy2c'
                 my_actor.add_to_list(actor=followed_did, list_uri=op_uri)
                 _, records = my_actor.unfollow(actor=followed_did, records=records)
