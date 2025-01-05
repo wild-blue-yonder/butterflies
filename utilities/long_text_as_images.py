@@ -17,6 +17,7 @@ def create_text_images(text,
                        image_size=(620, 620),
                        font_path=FONT_PATH,
                        font_size=18,
+                       numbered=True,
                        margin=25,
                        max_chars=60,
                        max_lines=20,
@@ -63,8 +64,8 @@ def create_text_images(text,
         alt_text = ''
 
         # Draw text on this page
-        y = margin
         lines_on_page = 0
+        y = margin if numbered else margin/2
 
         while all_lines and lines_on_page < max_lines:
             line = all_lines.pop(0)
@@ -74,15 +75,16 @@ def create_text_images(text,
             alt_text += line + '\n'
 
         # Draw page number
-        page_number_text = f'- {page_num} -'
-        # Get text width using font.getlength()
-        page_number_width = font.getlength(page_number_text)
-        draw.text(
-            ((image_size[0] - page_number_width) // 2, image_size[1] - margin - font_size),
-            page_number_text,
-            font=font,
-            fill='black'
-        )
+        if numbered:
+            page_number_text = f'- {page_num} -'
+            # Get text width using font.getlength()
+            page_number_width = font.getlength(page_number_text)
+            draw.text(
+                ((image_size[0] - page_number_width) // 2, image_size[1] - margin - font_size),
+                page_number_text,
+                font=font,
+                fill='black'
+            )
 
         # Save the image
         output_path = os.path.join(output_dir, f'page_{page_num:03d}.png')
