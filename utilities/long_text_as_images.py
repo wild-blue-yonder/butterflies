@@ -6,7 +6,7 @@ This source code is licensed under the license found in the
 LICENSE file in the root directory of this source tree.
 """
 from PIL import Image, ImageDraw, ImageFont
-import textwrap
+from utilities import preprocess_text
 import os
 
 
@@ -59,6 +59,8 @@ def create_text_images(text,
         # Create a new image with white background
         img = Image.new('RGB', image_size, color='white')
         draw = ImageDraw.Draw(img)
+        # initialize alt text
+        alt_text = ''
 
         # Draw text on this page
         y = margin
@@ -69,6 +71,7 @@ def create_text_images(text,
             draw.text((margin, y), line, font=font, fill='black')
             y += line_spacing
             lines_on_page += 1
+            alt_text += line + '\n'
 
         # Draw page number
         page_number_text = f'- {page_num} -'
@@ -84,7 +87,7 @@ def create_text_images(text,
         # Save the image
         output_path = os.path.join(output_dir, f'page_{page_num:03d}.png')
         img.save(output_path, 'PNG')
-        images.append(output_path)
+        images.append({'text': '','path': output_path, 'alt_text': alt_text})
         page_num += 1
 
     return images
@@ -215,4 +218,6 @@ Thank you for participating in this thought-provoking exercise! If you have any 
                                      font_path=font_path,
                                      font_size=18,
                                      max_lines=20)
+
+
     ...

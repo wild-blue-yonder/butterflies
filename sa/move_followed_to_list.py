@@ -41,7 +41,7 @@ save_jwt(my_actor.jwt)
 #     all_lists[list_name] = list_members
 
 # my_listfiles = ['FAIR', 'GDM', 'GT', 'HAIC', 'HF', 'MA', 'MILA',
-#                 'MSR', 'OAI', 'RL', 'OP', 'P']
+#                 'MSR', 'OAI', 'RL', 'OP', 'P', 'M']
 
 # all_members = []
 
