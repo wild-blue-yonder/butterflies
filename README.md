@@ -13,3 +13,9 @@ The Bluesky network creators were so busy with their own perception of their ent
 
 ## Begin with the basics!
 But first I recommend you to [start reading there](./basics/README.md). These simple examples will help you start your programmatic interactions with the Bluesky network.
+
+## Simple automations
+The simple, but useful automations like splitting a long text into a thread of posts or a thread of images, moving the followed people into lists and back... are described in the [simple automations](./sa/README.md) section.
+
+## Intelligent automations
+The intelligent automations show you how to use Language Models for making your 'social presence' less stressful and more meaningful. They are described in the [intelligent automations](./ia/README.md) section.
